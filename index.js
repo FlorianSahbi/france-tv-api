@@ -1,6 +1,13 @@
 const app = require('express')();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+
 const user = {
     pseudo: 'John'
 };
@@ -53,7 +60,6 @@ const matches = [{
     location: 'lausanne',
     competition: 'WTA Tour'
 }]
-app.use(cors());
 app.get('/api/controls/:actionId', (req, res) => {
 
     const { actionId } = req.params;
