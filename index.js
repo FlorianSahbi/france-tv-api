@@ -127,6 +127,4 @@ io.on('connection', function (socket) {
     console.log('a user connected');
 });
 
-http.listen(3100, function () {
-    console.log('Connection done on port 3100');
-});
+http.listen(process.env.PORT || 3100)
