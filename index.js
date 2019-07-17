@@ -8,7 +8,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-
 const matches = [{
     matchId: 0,
     title: 'A.Cornet - M.Trevisan',
@@ -58,7 +57,6 @@ const matches = [{
     location: 'lausanne',
     competition: 'WTA Tour'
 }]
-
 
 // const matches = require('./routes/scraperRoutes');
 // const cameras = require('./routes/searchRoutes');
@@ -112,6 +110,16 @@ app.get('/api/controls/:actionId', (req, res) => {
             console.log({ event: 'switchTeam' });
             io.emit('switchTeam', { action: actionId, description: 'switchTeam' });
             break;
+
+        case '6':
+            console.log({ event: 'forward' });
+            io.emit('forward', { action: actionId, description: 'forward' });
+            break;
+
+        case '7':
+            console.log({ event: 'backward' });
+            io.emit('backward', { action: actionId, description: 'backward' });
+            break;
     }
 
     res.status(200).json(response);
@@ -127,8 +135,8 @@ app.get('/api/camera/:cameraId', (req, res) => {
         url: `/api/camera/${cameraId}`,
         cameraId
     }
-    console.log({ event: `Show camera ${cameraId}` })
-    io.emit('play', response);
+    console.log({ event: `show camera ${cameraId}` })
+    io.emit('show camera', response);
     res.status(200).json(response);
 });
 
@@ -198,10 +206,10 @@ app.get('/api/match/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-    console.log('a user connected');
+    console.log('POLIK');
     socket.on('helloworld', data => {
         console.log(data);
-    })
+    });
 });
 
 http.listen(process.env.PORT || 3100);
