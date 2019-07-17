@@ -2,15 +2,13 @@ const app = require('express')();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
-  });
+});
 
-const user = {
-    pseudo: 'John'
-};
+
 const matches = [{
     matchId: 0,
     title: 'A.Cornet - M.Trevisan',
@@ -60,6 +58,19 @@ const matches = [{
     location: 'lausanne',
     competition: 'WTA Tour'
 }]
+
+
+// const matches = require('./routes/scraperRoutes');
+// const cameras = require('./routes/searchRoutes');
+// const auth = require('./routes/userRoutes');
+// const controls = require('./routes/uploadRoutes');
+
+// app.use('/api/match', matches);
+// app.use('/api/camera', cameras);
+// app.use('/api/auth', auth);
+// app.use('/api/controls', controls);
+
+
 app.get('/api/controls/:actionId', (req, res) => {
 
     const { actionId } = req.params;
@@ -125,26 +136,14 @@ app.get('/api/auth/:pseudo', (req, res) => {
 
     const { pseudo } = req.params;
 
-    if (pseudo.toLowerCase() === user.toLowerCase()) {
-        response = {
-            message: `Authorized user`,
-            code: 200,
-            url: `/api/auth/${pseudo}`,
-            pseudo
-        }
-
-        res.status(200).json(response);
-    } else {
-        response = {
-            message: `Unauthorized user`,
-            code: 401,
-            url: `/api/auth/${pseudo}`,
-            pseudo
-        }
-
-        res.status(401).json(response);
+    response = {
+        message: `Request has been handled sucessfully`,
+        code: 200,
+        url: `/api/auth/${pseudo}`,
+        pseudo
     }
 
+    res.status(200).json(response);
 });
 
 app.get('/api/matches/', (req, res) => {
@@ -200,6 +199,9 @@ app.get('/api/match/', (req, res) => {
 
 io.on('connection', (socket) => {
     console.log('a user connected');
+    socket.on('helloworld', data => {
+        console.log(data);
+    })
 });
 
 http.listen(process.env.PORT || 3100);
