@@ -1,6 +1,7 @@
 'use strict';
 
 const getCamera = require('../actions/getCamera');
+const getDirect = require('../actions/getDirect');
 
 exports.getCamera = (req, res) => {
     const { cameraId } = req.params;

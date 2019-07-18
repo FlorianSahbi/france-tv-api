@@ -8,8 +8,7 @@ class getDirect {
         let response = {
             message: `Request has been handled sucessfully`,
             code: 200,
-            url: `/api/auth/${pseudo}`,
-            pseudo
+            url: `/api/camera/direct`,
         }
 
         io.emit('direct', { action: 'Direct', description: 'Direct' })
