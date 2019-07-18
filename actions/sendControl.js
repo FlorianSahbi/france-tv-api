@@ -62,6 +62,18 @@ class sendControl {
                 io.emit('backward', { action: actionId, description: 'backward' });
                 response.action = 'backward';
                 break;
+
+            case '8':
+                console.log({ event: 'switch match' });
+                io.emit('switch match', { action: actionId, description: 'switch match' });
+                response.action = 'switch match';
+                break;
+
+            case '9':
+                console.log({ event: 'direct' });
+                io.emit('direct', { action: actionId, description: 'direct' });
+                response.action = 'direct';
+                break;
         }
 
         res.status(200).json(response);

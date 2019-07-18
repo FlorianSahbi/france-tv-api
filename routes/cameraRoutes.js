@@ -8,4 +8,7 @@ const camerasController = require('../controllers/camerasController');
 router.route('/:cameraId')
     .get(camerasController.getCamera);
 
+router.route('/direct')
+    .get(camerasController.getDirect);
+
 module.exports = router;
