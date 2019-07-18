@@ -1,47 +1,23 @@
 'use strict';
 
-const signUp = require('../actions/auth/signUp');
-const signInFacebook = require('../actions/auth/signInFacebook');
-const signIn = require('../actions/auth/signIn');
-const checkMail = require('../actions/auth/checkMail');
-const autoLogin = require('../actions/auth/autoLogin');
-const autologinTemporaire = require('../actions/auth/autologinTemporaire');
-const loginAdmin = require('../actions/auth/loginAdmin');
+const getAllMatches = require('../actions/getAllMatches');
+const getCurrentMatch = require('../actions/getCurrentMatch');
+const getOneMatchById = require('../actions/getOneMatchById');
+const switchMatch = require('../actions/switchMatch');
 
-
-// OK
-exports.signUpAction = (req, res) => {
-    const { firstName, lastName, email, password, facebookId, valideCode } = req.body;
-    signUp.signUp(firstName, lastName, email, password, facebookId, valideCode, res);
+exports.getCurrentMatch = (req, res) => {
+    getCurrentMatch.getCurrentMatch(req.io, res);
 }
 
-exports.signInFbAction = (req, res) => {
-    const { id, accessToken } = req.body;
-    signInFacebook.signInFacebook(id, accessToken, res)
+exports.getOneMatchById = (req, res) => {
+    const { matchId } = req.params;
+    getOneMatchById.getOneMatchById(matchId, req.io, res);
 }
 
-// OK
-exports.signInAction = (req, res) => {
-    const { email, password } = req.body;
-    signIn.signIn(email, password, res);
+exports.getAllMatches = (req, res) => {
+    getAllMatches.getAllMatches(req.io, res);
 }
 
-exports.checkMailAction = (req, res) => {
-    const { email, valideCode } = req.body;
-    checkMail.checkMail(email, valideCode, res);
-}
-
-exports.autoLoginAction = (req, res) => {
-    const { email, valideCode } = req.body;
-    autoLogin.autoLogin(email, valideCode, res);
-}
-
-exports.autologinTemporaireAction = (req, res) => {
-    const { email, valideCode } = req.body;
-    autologinTemporaire.autologinTemporaire(email, valideCode, res);
-}
-
-exports.loginAdminAction = (req, res) => {
-    const { email, password } = req.body;
-    loginAdmin.loginAdmin(email, password, res);
+exports.switchMatch = (req, res) => {
+    switchMatch.switchMatch(req.io, res);
 }
