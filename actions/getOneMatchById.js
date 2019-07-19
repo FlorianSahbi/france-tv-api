@@ -2,7 +2,7 @@
 
 const matches = [{
     matchId: 0,
-    title: `Le match du tournois européen de qualification olympique, qui oppose l'équipe de Rennes à l'équipe de Toulouse.`,
+    title: `Le match du tournoi européen de qualification olympique, qui oppose l'équipe de Rennes à l'équipe de Toulouse.`,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices nec nulla ut vulputate. Duis ut turpis vel felis scelerisque lobortis. Maecenas sed felis quis leo interdum sollicitudin nec placerat neque. Phasellus tempor massa quis scelerisque dapibus. Donec egestas, sapien nec pulvinar rhoncus, nulla orci blandit lacus, vel euismod massa nisi ac urna. Integer eget ipsum a nisi varius euismod. Sed cursus ligula vitae arcu vestibulum, sed lacinia metus commodo.',
     players: [{
         firstName: 'alize',
@@ -18,7 +18,7 @@ const matches = [{
     competition: 'WTA Tour'
 }, {
     matchId: 1,
-    title: `Le match du tournois européen de qualification olympique, qui oppose l'équipe de Rennes à l'équipe de Toulouse.`,
+    title: `Le match du tournoi européen de qualification olympique, qui oppose l'équipe de Rennes à l'équipe de Toulouse.`,
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices nec nulla ut vulputate. Duis ut turpis vel felis scelerisque lobortis. Maecenas sed felis quis leo interdum sollicitudin nec placerat neque. Phasellus tempor massa quis scelerisque dapibus. Donec egestas, sapien nec pulvinar rhoncus, nulla orci blandit lacus, vel euismod massa nisi ac urna. Integer eget ipsum a nisi varius euismod. Sed cursus ligula vitae arcu vestibulum, sed lacinia metus commodo.',
     players: [{
         firstName: 'conny',
