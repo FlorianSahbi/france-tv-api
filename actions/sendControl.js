@@ -5,6 +5,12 @@ class sendControl {
 
     constructor() { }
 
+    responseBuilder(eventName, io, actionId, response) {
+        console.log({ event: eventName });
+        io.emit(eventName, { action: actionId, description: eventName });
+        response.action = eventName;
+    }
+
     sendControl(actionId, io, res) {
         let response = {
             message: `Request has been handled sucessfully`,
@@ -15,71 +21,17 @@ class sendControl {
         }
 
         switch (actionId) {
-            case '0':
-                console.log({ event: 'Play' });
-                io.emit('play', { action: actionId, description: 'Play' });
-                response.action = 'Play';
-                break;
-
-            case '1':
-                console.log({ event: 'Pause' });
-                io.emit('pause', { action: actionId, description: 'Pause' });
-                response.action = 'Pause';
-                break;
-
-            case '2':
-                console.log({ event: 'Random' });
-                io.emit('random', { action: actionId, description: 'Random' });
-                response.action = 'Random';
-                break;
-
-            case '3':
-                console.log({ event: 'zoomIn' });
-                io.emit('zoomIn', { action: actionId, description: 'zoomIn' });
-                response.action = 'zoomIn';
-                break;
-
-            case '4':
-                console.log({ event: 'zoomOut' });
-                io.emit('zoomOut', { action: actionId, description: 'zoomOut' });
-                response.action = 'zoomOut';
-                break;
-
-            case '5':
-                console.log({ event: 'switchTeam' });
-                io.emit('switchTeam', { action: actionId, description: 'switchTeam' });
-                response.action = 'switchTeam';
-                break;
-
-            case '6':
-                console.log({ event: 'forward' });
-                io.emit('forward', { action: actionId, description: 'forward' });
-                response.action = 'forward';
-                break;
-
-            case '7':
-                console.log({ event: 'backward' });
-                io.emit('backward', { action: actionId, description: 'backward' });
-                response.action = 'backward';
-                break;
-
-            case '8':
-                console.log({ event: 'switch match' });
-                io.emit('switch match', { action: actionId, description: 'switch match' });
-                response.action = 'switch match';
-                break;
-
-            case '9':
-                console.log({ event: 'direct' });
-                io.emit('direct', { action: actionId, description: 'direct' });
-                response.action = 'direct';
-                break;
+            case '0': this.responseBuilder('play', io, actionId, response); break;
+            case '1': this.responseBuilder('pause', io, actionId, response); break;
+            case '2': this.responseBuilder('random', io, actionId, response); break;
+            case '3': this.responseBuilder('zoomIn', io, actionId, response); break;
+            case '4': this.responseBuilder('zoomOut', io, actionId, response); break;
+            case '5': this.responseBuilder('forward', io, actionId, response); break;
+            case '6': this.responseBuilder('backward', io, actionId, response); break;
+            case '7': this.responseBuilder('switch match', io, actionId, response); break;
+            case '8': this.responseBuilder('direct', io, actionId, response); break;
         }
-
         res.status(200).json(response);
-
     }
-
-
 }
 module.exports = new sendControl();

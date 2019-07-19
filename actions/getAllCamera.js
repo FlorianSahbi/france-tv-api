@@ -11,7 +11,7 @@ class getAllCamera {
             url: `/api/camera/all`,
         }
         console.log({ event: `show camera all camera` })
-        io.emit('test', response);
+        io.emit('show mosaique', response);
         res.status(200).json(response);
     }
 }
